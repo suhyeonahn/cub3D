@@ -1,0 +1,63 @@
+// 간단한 결과물부터 내보기 
+
+#include "wall.h"
+
+void render_wall_projection(void)
+{
+	int bpp = 32;
+	int size_line = WINDOW_WIDTH * 4;
+	int endian = 0;
+	void *img_ptr = mlx_new_image(mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
+	int *img_data = (int *)mlx_get_data_addr(img_ptr, &bpp, &size_line, &endian);
+
+	for (int x = 0; x < NUM_RAYS; x++)
+	{
+		//cos90 = 0  ray_angle = player.rotation_angle
+		float perpDistance = rays[x].distance * cos(rays[x].ray_angle - player.rotation_angle);
+		float projected_wall_height;
+		if (perpDistance != 0)
+			projected_wall_height = (TILE_SIZE / perpDistance) * DIST_PROJ_PLANE;
+		else
+			projected_wall_height = 0;
+
+		int wall_strip_height = (int)projected_wall_height;
+
+		int wall_top_pixel = (WINDOW_HEIGHT / 2) - (wall_strip_height / 2);
+		wall_top_pixel = wall_top_pixel < 0 ? 0 : wall_top_pixel;
+		//printf("\n%i:%f:%f:%i\n", wall_top_pixel, projected_wall_height, perpDistance, x);
+		int wall_bottom_pixel = (WINDOW_HEIGHT / 2) + (wall_strip_height / 2);
+		wall_bottom_pixel = wall_bottom_pixel > WINDOW_HEIGHT ? WINDOW_HEIGHT : wall_bottom_pixel;
+
+     // set the color of the ceiling
+        for (int y = 0; y < wall_top_pixel; y++) {
+			img_data[(WINDOW_WIDTH * y) + x] = 0x00AAFF;
+        }
+
+        int texture_offsetX;
+        if (rays[x].was_hit_vertical)
+            texture_offsetX = (int)rays[x].wall_hitY % TILE_SIZE;
+        else
+            texture_offsetX = (int)rays[x].wall_hitX % TILE_SIZE;
+
+        // get the correct texture id number from the map content
+        //int texNum = rays[x].wall_hit_content - 1;
+
+       // int texture_width = textures[texNum].width;
+        //int texture_height = textures[texNum].height;
+
+        // render the wall from wallTopPixel to wallBottomPixel
+        for (int y = wall_top_pixel; y < wall_bottom_pixel; y++) {
+            int distance_from_top = y + (wall_strip_height / 2) - (WINDOW_HEIGHT / 2);
+            int texture_offsetY = distance_from_top * ((float)texture[0].height / wall_strip_height);
+
+			img_data[(WINDOW_WIDTH * y) + x] = texture[0].tex[(int)(texture[0].width * texture_offsetY) + texture_offsetX];
+        }
+
+        // set the color of the floor
+        for (int y = wall_bottom_pixel; y < WINDOW_HEIGHT; y++) {
+			img_data[(WINDOW_WIDTH * y) + x] = 0x0000FF;
+        }
+    
+	}
+	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);
+}

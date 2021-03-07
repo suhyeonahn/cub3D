@@ -1,0 +1,9 @@
+#ifndef KEY_EVENT_H
+#define KEY_EVENT_H
+
+#include "player.h"
+
+int key_press(int keycode, player_t *player);
+int key_release(int keycode, player_t *player);
+
+#endif
