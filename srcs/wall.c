@@ -25,8 +25,14 @@ void render_wall_projection(void)
 		int wall_bottom_pixel = (WINDOW_HEIGHT / 2) + (wall_strip_height / 2);
 		wall_bottom_pixel = wall_bottom_pixel > WINDOW_HEIGHT ? WINDOW_HEIGHT : wall_bottom_pixel;
 	
+
+		//	img_data[(WINDOW_WIDTH * y) + x] = 0x00AAFF;
+
 		for (int y = 0; y < wall_top_pixel; y++)
-			img_data[(WINDOW_WIDTH * y) + x] = 0x00AAFF;
+		{
+			img_data[(WINDOW_WIDTH * y) + x] = texture[4].tex[(int)(texture[4].width * ((int)y % (int)texture[4].height)) + ((int)x % (int)texture[4].width)];
+		}
+
 
 		int texture_offsetX;
 		if (rays[x].was_hit_vertical)
@@ -36,10 +42,10 @@ void render_wall_projection(void)
 		
 		/*// get the correct texture id number from the map content
 		int tex_num = rays[x].wall_hit_content - 1;
-
-        int texture_width = texture[tex_num].width;
-        int texture_height = texture[tex_num].height;
 */
+		// if (ray[x].wall_hit_content = 2)
+		// { draw srtipe }
+		
 		for (int y = wall_top_pixel; y < wall_bottom_pixel; y++)
 		{
 			int distance_from_top = y + (wall_strip_height / 2) - (WINDOW_HEIGHT / 2);
@@ -98,25 +104,10 @@ void render_wall_projection(void)
 
 			}
 		}
-/*
-			if (rays[x].was_hit_vertical)
-				img_data[(WINDOW_WIDTH * y) + x] = texture[3].tex[(int)(texture[3].width * texture_offsetY) + texture_offsetX];
-			else if (!rays[x].was_hit_vertical)
-				img_data[(WINDOW_WIDTH * y) + x] = texture[1].tex[(int)(texture[1].width * texture_offsetY1) + texture_offsetX];
-		}
-			if ((is_player_facing_down && !rays[x].was_hit_vertical) || (is_player_facing_left && rays[x].was_hit_vertical && is_ray_facing_up) || (is_player_facing_right && rays[x].was_hit_vertical && is_ray_facing_up))
-				img_data[(WINDOW_WIDTH * y) + x] = texture[0].tex[(int)(texture[0].width * texture_offsetY1) + texture_offsetX];
-			if ((is_player_facing_up && !rays[x].was_hit_vertical) || (is_player_facing_left && rays[x].was_hit_vertical && is_ray_facing_down) || (is_player_facing_right && rays[x].was_hit_vertical && is_ray_facing_down))
-				img_data[(WINDOW_WIDTH * y) + x] = texture[1].tex[(int)(texture[1].width * texture_offsetY1) + texture_offsetX];
-			if ((is_player_facing_right && !rays[x].was_hit_vertical) || (is_player_facing_down && rays[x].was_hit_vertical && is_ray_facing_left) || (is_player_facing_up && rays[x].was_hit_vertical && is_ray_facing_left))
-				img_data[(WINDOW_WIDTH * y) + x] = texture[0].tex[(int)(texture[0].width * texture_offsetY1) + texture_offsetX];
-			if ((is_player_facing_left && !rays[x].was_hit_vertical) || (is_player_facing_down && rays[x].was_hit_vertical && is_ray_facing_right) || (is_player_facing_up && rays[x].was_hit_vertical && is_ray_facing_right))
-				img_data[(WINDOW_WIDTH * y) + x] = texture[3].tex[(int)(texture[3].width * texture_offsetY) + texture_offsetX];
-		}
-		*/
-
-		for (int y = wall_bottom_pixel; y < WINDOW_HEIGHT; y++)  
-			img_data[(WINDOW_WIDTH * y) + x] = 0xAABBFF;
+		for (int y = wall_bottom_pixel; y < WINDOW_HEIGHT; y++)
+			img_data[(WINDOW_WIDTH * y) + x] = texture[5].tex[(int)(texture[5].width * ((int)y % (int)texture[5].height)) + ((int)x % (int)texture[5].width)];
+			//img_data[(WINDOW_WIDTH * y) + x] = 0xAABBFF;
 	}
 	mlx_put_image_to_window(mlx_ptr, win_ptr, img_ptr, 0, 0);
+	mlx_destroy_image(mlx_ptr, img_ptr);
 }

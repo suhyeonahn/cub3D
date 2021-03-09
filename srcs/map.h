@@ -10,7 +10,7 @@
 
 #define VALID_MAP_CHARACTERS " 01234NSEW"
 #define DIRECTIONS "NSEW"
-#define MINIMAP_SCALE_FACTOR 0.2
+#define MINIMAP_SCALE_FACTOR 0.15
 
 int count_check_columns(char const *line);
 int check_top_bottom_borders(void);

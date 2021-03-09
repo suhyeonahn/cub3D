@@ -9,10 +9,10 @@
 void draw_rect(int x, int y, int width, int height, uint32_t color)
 {
 	int i = x;
-	while (i < (x + width))
+	while (i <= (x + width))
 	{
 		int j = y;
-		while (j < (y + height))
+		while (j <= (y + height))
 		{
 			mlx_pixel_put(mlx_ptr, win_ptr, i, j, color);
 			j++;

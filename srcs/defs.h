@@ -25,17 +25,19 @@
 #define KEY_RIGHT 124
 #define KEY_LEFT 123
 
-#define TYPE_R				9
+#define TYPE_R				10
 #define TYPE_NO				1
 #define TYPE_SO				2
 #define TYPE_WE				3
 #define TYPE_EA				4
-#define TYPE_S				5
-#define TYPE_F				6
-#define TYPE_C				7
-#define TYPE_MAP			8
+#define TYPE_CI             5
+#define TYPE_FL             6
+#define TYPE_S				7
+#define TYPE_F				8
+#define TYPE_C				9
+#define TYPE_MAP			11
 
-#define NUM_TEXTURES 4
+#define NUM_TEXTURES 6
 
 extern void *mlx_ptr;
 extern void *win_ptr;

@@ -2,6 +2,15 @@
 
 t_head *map_head;
 
+
+void normalize_angle(float *angle)
+{
+	//cant use module% for float val
+	*angle = remainder(*angle, TWO_PI);
+	if (*angle < 0)
+		*angle = TWO_PI + *angle;
+}
+
 void	error_detected_exit(char const *str)
 {
 	if (str)

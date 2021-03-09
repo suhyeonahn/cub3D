@@ -5,6 +5,7 @@
 #include "config.h"
 #include "map.h"
 #include "graphics.h"
+#include "utils.h"
 #include <math.h>
 
 typedef struct {

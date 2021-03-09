@@ -174,7 +174,7 @@ void render_map(void)
 					tileY * MINIMAP_SCALE_FACTOR,
 					TILE_SIZE * MINIMAP_SCALE_FACTOR,
 					TILE_SIZE * MINIMAP_SCALE_FACTOR,
-					tile_color * MINIMAP_SCALE_FACTOR
+					tile_color
 					);
 
 		}

@@ -8,7 +8,7 @@ player_t player = {
 	.turn_direction = 0,
 	.walk_direction = 0,
 	.rotation_angle = PI / 2,
-	.walk_speed = 10,
+	.walk_speed = 30,
 	.turn_speed = 10 * (PI / 180)
 };
 
@@ -32,17 +32,10 @@ void get_player_starting_point(void)
 	}
 }
 
-/*void movePlayer(float deltaTime)
-  {
-  player.rotationAngle += player.turnDirection * player.turnSpeed * deltaTime;
-  float moveStep = player.walkDirection * player.walkSpeed * deltaTime;
-  }*/
-
 void move_player(void)
-{
-	//float deltaTime = 0.10f;
-
+{	
 	player.rotation_angle += player.turn_direction * player.turn_speed;
+	normalize_angle(&player.rotation_angle);
 	int move_step = player.walk_direction * player.walk_speed;
 
 	float new_playerX = player.x + cos(player.rotation_angle) * move_step;

@@ -23,7 +23,6 @@ typedef struct
 #define NUM_RAYS 1920
 extern ray_t rays[NUM_RAYS];
 
-void normalize_angle(float* angle);
 float distance_between_points(float x1, float y1, float x2, float y2);
 void cast_all_rays(void);
 void cast_a_ray(float ray_angle, int strip_id);

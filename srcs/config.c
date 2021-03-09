@@ -115,15 +115,19 @@ int	check_type(void)
 	if (g_line[0] == 'R' && g_line[1] == ' ')
 		return (TYPE_R);
 	else if (g_line[0] == 'N' && g_line[1] == 'O')
-		return (TYPE_NO);
+		return (TYPE_NO); //
 	else if (g_line[0] == 'S' && g_line[1] == 'O')
-		return (TYPE_SO);
+		return (TYPE_SO); //
 	else if (g_line[0] == 'W' && g_line[1] == 'E')
-		return (TYPE_WE);
+		return (TYPE_WE); //
 	else if (g_line[0] == 'E' && g_line[1] == 'A')
-		return (TYPE_EA);
+		return (TYPE_EA); //
+	else if (g_line[0] == 'C' && g_line[1] == 'I')
+		return (TYPE_CI); //
+	else if (g_line[0] == 'F' && g_line[1] == 'L')
+		return (TYPE_FL); //
 	else if (g_line[0] == 'S' && g_line[1] == ' ')
-		return (TYPE_S);
+		return (TYPE_S); //
 	else if (g_line[0] == 'F' && g_line[1] == ' ')
 		return (TYPE_F);
 	else if (g_line[0] == 'C' && g_line[1] == ' ')
@@ -143,7 +147,7 @@ void parse_line(void)
 			error_detected_exit("Error\nparsing line\n");
 		parse_resolution();
 	}
-	else if (g_type >= TYPE_NO && g_type <= TYPE_EA)
+	else if (g_type >= TYPE_NO && g_type <= TYPE_FL)
 	{
 		if (texture[g_type -1].tex_path)
 			error_detected_exit("Error\nparsing line\n");

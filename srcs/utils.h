@@ -3,6 +3,8 @@
 
 #include <stdlib.h>
 #include <unistd.h>
+#include <math.h>
+#include "defs.h"
 
 #define BUFFER_SIZE 2000
 
@@ -15,6 +17,7 @@ typedef struct s_head {
 	t_str*			head;
 }	t_head;
 
+void normalize_angle(float* angle);
 void	createLinkedList(t_str *new);
 void error_detected_exit(char const *str);
 int	    ft_isdigit(int c);

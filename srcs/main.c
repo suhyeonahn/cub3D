@@ -14,7 +14,6 @@
 
 void *mlx_ptr;
 void *win_ptr;
-//int ticksLastFrame = 0;
 
 void update(void)
 {
@@ -64,25 +63,10 @@ void setup(void)
 	get_player_starting_point();
 }
 
-void clear_color_buffer(void)
-{
-	int j = 0;
-	while (j < WINDOW_HEIGHT)
-	{
-		int i = 0;
-		while (i < WINDOW_WIDTH)
-		{
-			mlx_pixel_put(mlx_ptr, win_ptr, i, j, 0x000000);
-			i++;
-		}
-		j++;
-	}
-}
-
 int management(void)
 {
-	clear_color_buffer();
 	//update();
+	cast_all_rays();
 	render();
 
 	return(0);
@@ -118,10 +102,12 @@ int main(int argc, char **argv)
 
 	setup();
 
+	management();
+
 	mlx_hook(win_ptr, 2, 0, key_press, &player);
 	mlx_hook(win_ptr, 3, 0, key_release, &player);
 	//	mlx_hook(win_ptr, 17, 0, &destroyWindow, &player);
-	mlx_loop_hook(mlx_ptr, management, (void *)0);
+	//mlx_loop_hook(mlx_ptr, management, (void *)0);
 	mlx_loop(mlx_ptr);
 
 //	release_resources();
