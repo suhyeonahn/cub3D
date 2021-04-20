@@ -32,6 +32,7 @@ size_t	ft_strlen(const char *str);
 int	ft_strncmp(const char *s1, const char *s2, size_t n);
 int	ft_atoi(const char *str);
 char	*ft_strdup(const char *src);
+char	*ft_charjoin(char c1, char c2);
 char	*ft_strjoin(char const *s1, char const *s2);
 char		**freee(char const **dst, int j);
 char		**ft_split(char	const *s, char c);

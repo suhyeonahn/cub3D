@@ -3,6 +3,7 @@
 
 #include "defs.h"
 #include "config.h"
+#include "sprite.h"
 #include "utils.h"
 #include "graphics.h"
 #include <stdbool.h>
@@ -19,6 +20,7 @@ int check_map_valid(void);
 int	copy_map(void);
 int parse_map(void);
 bool map_has_wall_at(float x, float y);
+bool map_has_sprite_at(t_sprite **sprite, float x, float y);
 bool is_inside_map(float x, float y);
 int	get_map_at(int i, int j);
 void render_map(void);

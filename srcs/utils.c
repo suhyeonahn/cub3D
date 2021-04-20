@@ -74,7 +74,7 @@ t_str	*str_add_back(t_str **str, char *content)
 	if (!*str)
 	{
 		*str = new;
-		createLinkedList(new);
+		createLinkedList(new); // doesnt need that
 	}
 	else
 	{
@@ -246,6 +246,17 @@ char	*ft_strchr(const char *s, int c)
 		i++;
 	}
 	return (NULL);
+}
+
+char	*ft_charjoin(char c1, char c2)
+{
+	char	*new;
+	if (!(new = (char *)malloc(sizeof(char) * 4)))
+		return (NULL);
+	new[0] = c1;
+	new[1] = ',';
+	new[2] = c2;
+	return (new);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)

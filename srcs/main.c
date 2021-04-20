@@ -5,6 +5,7 @@
 #include "ray.h"
 #include "wall.h"
 #include "map.h"
+#include "sprite.h"
 //#include "key_event.h"
 #include "../mlx/mlx.h"
 
@@ -18,6 +19,7 @@ void *win_ptr;
 void update(void)
 {
 	move_player();
+	calculate_sprites();
 	cast_all_rays();
 }
 
@@ -61,6 +63,7 @@ void setup(void)
 {
 	load_wall_texture();
 	get_player_starting_point();
+	calculate_sprites();
 }
 
 int management(void)

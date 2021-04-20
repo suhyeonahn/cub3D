@@ -147,7 +147,7 @@ void parse_line(void)
 			error_detected_exit("Error\nparsing line\n");
 		parse_resolution();
 	}
-	else if (g_type >= TYPE_NO && g_type <= TYPE_FL)
+	else if (g_type >= TYPE_NO && g_type <= TYPE_S)
 	{
 		if (texture[g_type -1].tex_path)
 			error_detected_exit("Error\nparsing line\n");

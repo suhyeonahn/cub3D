@@ -106,7 +106,13 @@ int	copy_map(void)
 		{
 			while (map_buffer->content[j] == ' ')
 				j++;
-			config.map[i][j] = map_buffer->content[j] -48;
+			config.map[i][j] = map_buffer->content[j] - 48;
+			if (config.map[i][j] == 2)
+			{
+				sprites_buffer = sprites_buffer_add_back(&sprites_buffer, j + 1, i + 1);
+				//printf("\n%f:%f\n", sprites_buffer->x, sprites_buffer->y);
+
+			}
 			if (ft_in_set(map_buffer->content[j], DIRECTIONS))
 				has_camera++;
 			j++;
@@ -147,7 +153,24 @@ bool map_has_wall_at(float x, float y)
 		return 1;
 	int map_grid_indexX = floor(x / TILE_SIZE);
 	int map_grid_indexY = floor(y / TILE_SIZE);
-	return config.map[map_grid_indexY][map_grid_indexX] != 0;
+	return config.map[map_grid_indexY][map_grid_indexX] == 1;
+}
+
+bool map_has_sprite_at(t_sprite **sprite, float x, float y)
+{
+	while (*sprite)
+	{
+
+		if ((*sprite)->first_x < x && x < (*sprite)->last_x)
+		{
+			if (y == (*sprite)->y)
+			{
+				return 1;
+			}
+		}
+		*sprite = (*sprite)->next;
+	}
+	return 0;  
 }
 
 bool is_inside_map(float x, float y)

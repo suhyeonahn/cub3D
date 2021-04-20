@@ -37,7 +37,7 @@
 #define TYPE_C				9
 #define TYPE_MAP			11
 
-#define NUM_TEXTURES 6
+#define NUM_TEXTURES 7
 
 extern void *mlx_ptr;
 extern void *win_ptr;

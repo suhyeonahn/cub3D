@@ -9,7 +9,7 @@ player_t player = {
 	.walk_direction = 0,
 	.rotation_angle = PI / 2,
 	.walk_speed = 30,
-	.turn_speed = 10 * (PI / 180)
+	.turn_speed = 45 * (PI / 180)
 };
 
 void get_player_starting_point(void)
