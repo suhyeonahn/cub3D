@@ -1,1 +1,1 @@
-# cub3D
+# Game using ray-casting
